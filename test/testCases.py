@@ -1,5 +1,4 @@
 import math
-from logging import error
 import random
 import sys
 sys.path.append('../code')
@@ -19,10 +18,14 @@ def runs(k):
     old = [None]*len(the)
     for k,v in enumerate(the):
         old[k] = v
-    if the["dump"]:
+    if eval(the["dump"]):
         status, out = True, eg[k]
     else:
-        status, out = error(eg[k])
+        status = False
+        try:
+            eg[k]
+        except:
+            out = "Error"
     for k,v in enumerate(old):
         the[k] = v
     msg = ("PASS" if (out is True) else "FAIL") if status else "CRASH"
@@ -59,11 +62,11 @@ def test_the_eg():
 
 def test_bignum_eg():
     num = Num()
-    the.num = 32
+    the["nums"] = 32
     for i in range(1,100):
         num.add(i)
     oo(num.nums())
-    assert 32 == len(num)
+    assert len(num._has) == 32
 
 def test_num_eg():
     num = Num()
@@ -76,4 +79,3 @@ def test_num_eg():
 
 the = cli(the)
 runs(the["eg"])
-exit(fails)

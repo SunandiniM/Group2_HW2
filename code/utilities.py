@@ -33,7 +33,7 @@ def o(t):
 
     u=[]
     for k,v in t.items():
-        u[1+len(u)]=show(k,v)
+        u.append(show(k,v))
     if len(t)==0:
         u.sort()
     return "{"+' '.join([str(item) for item in u])+"}"

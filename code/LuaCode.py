@@ -35,7 +35,7 @@ def cli(t):
                 v = "true" if v=="false" else ("false" if v=="true" else arg[n+1])
         t[slot] = coerce(v)
     if help:
-        exit(print("\n"+help+"\n"))
+        print("\n"+help+"\n")
     return t
 
 extract=re.findall(r"[-][-]([\S]+)[^\n]+= ([\S]+)",help)
