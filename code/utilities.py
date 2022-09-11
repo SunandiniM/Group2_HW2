@@ -41,3 +41,11 @@ def o(t):
 def oo(t):
     print(o(t))
     return t
+
+def copy(t):
+    if type(t) is not dict:
+        return t
+    u={}
+    for k,v in t:
+        u[k]=copy(v)
+    return u
