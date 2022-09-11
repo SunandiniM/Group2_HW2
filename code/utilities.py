@@ -49,3 +49,7 @@ def copy(t):
     for k,v in t:
         u[k]=copy(v)
     return u
+
+def push(t,x):
+    t[len(t)]=x
+    return x
