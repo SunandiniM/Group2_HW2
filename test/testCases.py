@@ -1,14 +1,15 @@
 import math
 import random
 import sys
-sys.path.append('../code')
-from Num import *
-from LuaCode import *
-from Sym import *
-from utilities import *
+# sys.path.append('../code')
+from ..code import Num
+from ..code import LuaCode
+from ..code import Sym
+from ..code import utilities
 
 eg = {}
 fails = 0
+the = LuaCode.the
 
 def runs(k):
     if eg:
@@ -57,19 +58,19 @@ def ALL_eg():
     return True
 
 def test_the_eg():
-    oo(the)
+    utilities.oo(the)
     assert True
 
 def test_bignum_eg():
-    num = Num()
+    num = Num.Num()
     the["nums"] = 32
     for i in range(1,100):
         num.add(i)
-    oo(num.nums())
+    utilities.oo(num.nums())
     assert len(num._has) == 32
 
 def test_num_eg():
-    num = Num()
+    num = Num.Num()
     for i in range(1,100):
         num.add(i)
     mid, div = num.mid(), num.div()
@@ -77,5 +78,5 @@ def test_num_eg():
     assert 50<=mid and mid<=52 and 30.5<div and div<32
 
 
-the = cli(the)
+the = LuaCode.cli(the)
 runs(the["eg"])

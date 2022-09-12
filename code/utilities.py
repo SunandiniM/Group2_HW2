@@ -1,5 +1,5 @@
 from fileinput import filename
-from LuaCode import *
+from .LuaCode import *
 import re
 
 def csv():
@@ -10,12 +10,11 @@ def csv():
             return False
         elif re.match(r"^[0-9]+$",s):
             return int(s)
-    sep = "([^"+the.seperator+"]+)"
-    src = io.open(filename)
+    sep = "([^"+the["seperator"]+"]+)"
     while True:
-        s = io.read()
+        s = open('./data/sampleData.csv', 'r')
         if not s:
-            return io.close(src)
+            return s.close()
         t = []
         for s1 in s.match(sep):
             t.append(coerce(s1))
@@ -41,15 +40,3 @@ def o(t):
 def oo(t):
     print(o(t))
     return t
-
-def copy(t):
-    if type(t) is not dict:
-        return t
-    u={}
-    for k,v in t:
-        u[k]=copy(v)
-    return u
-
-def push(t,x):
-    t[len(t)]=x
-    return x
