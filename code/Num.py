@@ -1,5 +1,8 @@
+import sys
+sys.path.append('../code')
+from .LuaCode import *
 import math
-from LuaCode import the
+# import LuaCode
 import random
 
 class Num:
@@ -22,22 +25,22 @@ class Num:
             self.isSorted=True
         return self._has
     
-    def add(self,v, pos):
+    def add(self,v):
         if v!= "?":  #check
             self.n= self.n+1
             self.lo=min(v,self.lo)
             self.hi=max(v,self.hi)
             if len(self._has) - 1 < the["nums"]:
-               pos=len(self._has)
+                pos=len(self._has)
             elif random.random() < the["nums"]/self.n:
-               pos=random.random(len(self._has-1))
+                pos=random.random(len(self._has-1))
             if pos:
-               self.isSorted = False
-               self._has[pos] = int(v)
+                self.isSorted = False
+                self._has[pos] = int(v)
 
     def per(self,t,p):
-        p=math.floor(((p or 0.5)*(len(t)-1))+0.5)
-        return t[max(1,min(len(t)-1,p))]
+        p=math.floor(((p or 0.5)*(len(t)))+0.5)
+        return t[max(0,min(len(t),p))]
 
     def div(self):
         a=self.nums()

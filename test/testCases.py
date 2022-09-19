@@ -1,14 +1,17 @@
 import math
 import random
 import sys
-sys.path.append('../code')
-from Num import *
-from LuaCode import *
-from Sym import *
-from utilities import *
+# sys.path.append('../code')
+from ..code import Num
+from ..code import LuaCode
+from ..code import Sym
+from ..code import utilities
+from ..code import Row
+from ..code import Cols
 
 eg = {}
 fails = 0
+the = LuaCode.the
 
 def runs(k):
     if eg:
@@ -57,25 +60,51 @@ def ALL_eg():
     return True
 
 def test_the_eg():
-    oo(the)
+    utilities.oo(the)
     assert True
 
 def test_bignum_eg():
-    num = Num()
+    num = Num.Num()
     the["nums"] = 32
     for i in range(1,100):
         num.add(i)
-    oo(num.nums())
+    utilities.oo(num.nums())
     assert len(num._has) == 32
 
 def test_num_eg():
-    num = Num()
+    num = Num.Num()
     for i in range(1,100):
         num.add(i)
     mid, div = num.mid(), num.div()
     print(mid, div)
     assert 50<=mid and mid<=52 and 30.5<div and div<32
 
+def test_csv_eg():
+    n=0
+    def func(row,n):
+        n=n+1
+        if n>10:
+            return
+        else:
+            return oo(row)
+    csv('./data/sampleData.csv',func(row,n))
+    assert True
 
-the = cli(the)
+def test_data_eg():
+    d = Data("../data/sampleData.csv")
+    for _,col in d.cols.y:
+        oo(col)
+
+def test_stats_eg():
+    data = Data("../data/sampleData.csv")
+    div = lambda col: col.div()
+    mid = lambda col: col.mid()
+    print("xmid", o(data.stats(2,data.cols.x, mid)))
+    print("xdiv", o(data.stats(3,data.cols.x, div)))
+    print("ymid", o(data.stats(2,data.cols.y, mid)))
+    print("ydiv", o(data.stats(3,data.cols.y, div)))
+    assert True
+
+the = LuaCode.cli(the)
 runs(the["eg"])
+utilities.rogues()

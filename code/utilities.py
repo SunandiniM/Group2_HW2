@@ -1,21 +1,17 @@
 from fileinput import filename
-from LuaCode import *
+from os import environ
+from .LuaCode import *
 import re
+import math
 
-def csv():
-    def fun(s):
-        if s=="true":
-            return True
-        elif s=="false":
-            return False
-        elif re.match(r"^[0-9]+$",s):
-            return int(s)
-    sep = "([^"+the.seperator+"]+)"
-    src = io.open(filename)
+b4=[]
+
+def csv(fname, fun):
+    sep = "([^"+the["seperator"]+"]+)"
     while True:
-        s = io.read()
+        s = open(fname, 'r')
         if not s:
-            return io.close(src)
+            return s.close()
         t = []
         for s1 in s.match(sep):
             t.append(coerce(s1))
@@ -49,3 +45,21 @@ def copy(t):
     for k,v in t:
         u[k]=copy(v)
     return u
+
+def push(t,x):
+    t.append(x)
+    return x
+
+def per(t,p):
+    p=math.floor(((p or 0.5)*t.length())+0.5)
+    return t[max(1,min(t.length(),p))]
+
+def rogues():
+    print(environ.items)
+    for k,v in environ.items:
+        if not b4[k]:
+            print("?",k,type(v))
+
+def rnd(x, places):
+    mult = 10^(places or 2)
+    return math.floor(x * mult + 0.5)/mult
