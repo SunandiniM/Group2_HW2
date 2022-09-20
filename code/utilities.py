@@ -6,17 +6,17 @@ import math
 
 b4=[]
 
-def csv(fname, fun):
-    sep = "([^"+the["seperator"]+"]+)"
-    while True:
-        s = open(fname, 'r')
-        if not s:
-            return s.close()
-        t = []
-        for s1 in s.match(sep):
-            t.append(coerce(s1))
-        
-        fun(t)
+def csv(fname, fun=None):
+    if(fname==None or len(fname.strip())==0):
+        raise Exception("File not found")
+    else:
+        sep = "([^"+the["seperator"]+"]+)"
+        with open(fname, 'r', encoding='utf-8') as s:
+            t = []
+            for s1 in s.readlines():
+                t.append(coerce(s1))
+            if fun:
+                fun(t)
 
 def o(t):
     if type(t) is not dict:
@@ -51,15 +51,16 @@ def push(t,x):
     return x
 
 def per(t,p):
-    p=math.floor(((p or 0.5)*t.length())+0.5)
-    return t[max(1,min(t.length(),p))]
+    if t:
+        p=math.floor(((p or 0.5)*len(t))+0.5)
+        return t[max(0,min(len(t),p))]
 
-def rogues():
-    print(environ.items)
-    for k,v in environ.items:
-        if not b4[k]:
-            print("?",k,type(v))
+# def rogues():
+#     print(environ.items)
+#     for k,v in environ.items:
+#         if not b4[k]:
+#             print("?",k,type(v))
 
-def rnd(x, places):
+def rnd(x, places=0):
     mult = 10^(places or 2)
     return math.floor(x * mult + 0.5)/mult

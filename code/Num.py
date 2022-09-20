@@ -1,8 +1,8 @@
 import sys
 sys.path.append('../code')
 from .LuaCode import *
+from .utilities import *
 import math
-# import LuaCode
 import random
 
 class Num:
@@ -10,14 +10,14 @@ class Num:
         self.n=0
         self.c=c
         self.name= s
-        self._has=[]
-        self.lo=-math.inf
-        self.hi=math.inf
+        self._has={}
+        self.lo=math.inf
+        self.hi=-math.inf
         self.isSorted=True
-        if "-$" not in s:
-            self.w=1
-        else:
+        if(len(s)>0 and s[-1]=="-"):
             self.w=-1
+        else:
+            self.w=1
 
     def nums(self):
         if not self.isSorted:
@@ -30,6 +30,7 @@ class Num:
             self.n= self.n+1
             self.lo=min(v,self.lo)
             self.hi=max(v,self.hi)
+            pos = None
             if len(self._has) - 1 < the["nums"]:
                 pos=len(self._has)
             elif random.random() < the["nums"]/self.n:
@@ -38,13 +39,9 @@ class Num:
                 self.isSorted = False
                 self._has[pos] = int(v)
 
-    def per(self,t,p):
-        p=math.floor(((p or 0.5)*(len(t)))+0.5)
-        return t[max(0,min(len(t),p))]
-
     def div(self):
         a=self.nums()
-        return (self.per(a,0.9)-self.per(a,0.1))/2.58
+        return (per(a,0.9)-per(a,0.1))/2.58
 
     def mid(self):
-        return self.per(self.nums(),0.5)
+        return per(self.nums(),0.5)
