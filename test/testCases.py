@@ -1,6 +1,6 @@
 import math
 import random
-import sys
+# import sys
 # sys.path.append('../code')
 from ..code import Num
 from ..code import LuaCode
@@ -53,6 +53,7 @@ def LS_eg():
     return True
 
 def ALL_eg():
+    global fails
     for _, k in list_eg():
         if k != "ALL":
             print("\n------------------------------------")
