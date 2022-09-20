@@ -1,13 +1,8 @@
-import math
 import random
-# import sys
-# sys.path.append('../code')
 from ..code import Num
 from ..code import LuaCode
 from ..code import Sym
 from ..code import utilities
-from ..code import Row
-from ..code import Cols
 from ..code import Data
 
 eg = {}
@@ -20,8 +15,8 @@ def runs(k):
     random.seed(the["seed"])
     random.random()
     old = [None]*len(the)
-    for k,v in enumerate(the):
-        old[k] = v
+    for u,v in enumerate(the):
+        old[u] = v
     if eval(the["dump"]):
         status, out = True, eg[k]
     else:
@@ -30,8 +25,8 @@ def runs(k):
             eg[k]
         except:
             out = "Error"
-    for k,v in enumerate(old):
-        the[k] = v
+    for u,v in enumerate(old):
+        the[u] = v
     msg = ("PASS" if (out is True) else "FAIL") if status else "CRASH"
     print("!!!!!!", msg, k, status)
     return out
@@ -101,17 +96,17 @@ def test_csv_eg():
             return
         else:
             return utilities.oo(row)
-    print(utilities.csv("../data/sampleData.csv",func))
+    print(utilities.csv("./data/sampleData.csv",func))
     assert True
 
 def test_data_eg():
-    d = Data.Data("../data/sampleData.csv")
-    for _,col in d.cols.y:
+    d = Data.Data("./data/sampleData.csv")
+    for col in d.cols.y:
         utilities.oo(col)
     assert True
 
 def test_stats_eg():
-    data = Data.Data("../data/sampleData.csv")
+    data = Data.Data("./data/sampleData.csv")
     div = lambda col: col.div()
     mid = lambda col: col.mid()
     print("xmid", utilities.o(data.stats(2,data.cols.x, "mid")))

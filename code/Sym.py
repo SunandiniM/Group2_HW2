@@ -15,6 +15,7 @@ class Sym:
 
     def mid(self):
         most=-1
+        mode = None
         for k,v in self._has.items():
             if v>most:
                 mode,most=k,v
