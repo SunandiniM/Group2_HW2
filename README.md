@@ -1,4 +1,6 @@
 # Group2_HW - 2,3,4
+[![DOI](https://zenodo.org/badge/533100413.svg)](https://zenodo.org/badge/latestdoi/533100413)
+[![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](https://github.com/SunandiniM/Group2_HW2/blob/main/README.md)
 [![Collaborators](https://img.shields.io/badge/Collaborators-5-orange.svg?style=flat)](https://github.com/SunandiniM/Group2_HW2/graphs/contributors)
 [![Language](https://img.shields.io/badge/Language-Python-blue.svg?style=flat)](https://github.com/SunandiniM/Group2_HW2/search?l=python)
 [![License](https://img.shields.io/badge/License-MIT-purple.svg?style=flat)](https://github.com/SunandiniM/Group2_HW2/blob/main/LICENSE)
@@ -6,9 +8,9 @@
 #
 
  ## Summary
- HW2	Convert the LUA code to python and work on the Num and Sym classes and convert the relevant testcases
- HW3	Convert the LUA code to python and work on the Cols, Row, Data class and the test cases eg.csv, eg.data, eg.stats.
- HW4	Add the post-commit hooks to auto run all the test cases and specify the code coverage tests
+ - HW2	Convert the LUA code to python and work on the Num and Sym classes and convert the relevant testcases
+ - HW3	Convert the LUA code to python and work on the Cols, Row, Data class and the test cases eg.csv, eg.data, eg.stats.
+ - HW4	Add the post-commit hooks to auto run all the test cases and specify the code coverage tests
 
 ## License
 
