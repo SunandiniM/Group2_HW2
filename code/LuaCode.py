@@ -12,33 +12,39 @@ OPTIONS:
  -h  --help      show help                             = false
  -n  --nums      number of nums to keep                = 512
  -s  --seed      random number seed                    = 10019
- -S  --seperator feild seperator                       = ,"""
-
-the = {}
+ -S  --seperator feild seperator                       = ,
+ """
 
 def coerce(s):
-    if s=="true":
-        return True
-    elif s=="false":
-        return False
-    elif re.match(r"^[0-9]+$",s):
+    def fun(s1):
+        if s=="true":
+            return True
+        elif s=="false":
+            return False
+        return s1
+
+    if re.match(r"^[0-9]+$",s):
         return int(s)
-    return s
+    else:
+        return None or fun(s)
 
 def cli(t):
-    for slot,v in list(t.items()):
+    for slot,v in t.items():
         v = str(v)
         arg = sys.argv
-        for x in arg:
-            n = arg.index(x)
-            if x is ("-"+slot[0]) or x is ("--"+slot):
+        for n, x in enumerate(arg):
+            if (x is ("-"+slot[0:1])) or (x is ("--"+slot)):
                 v = "true" if v=="false" else ("false" if v=="true" else arg[n+1])
         t[slot] = coerce(v)
-    if help:
-        print("\n"+help+"\n")
+    if t["help"] is True:
+        sys.exit(print("\n"+help+"\n"))
     return t
 
-extract=re.findall(r"[-][-]([\S]+)[^\n]+= ([\S]+)",help)
+def fun_the():
+    the = {}
+    extract = re.findall(r"[-][-]([\S]+)[^\n]+= ([\S]+)", help)
+    for k, v in extract:
+        the[k] = coerce(v)
+    return the
 
-for k,v in extract:
-    the[k]=coerce(v)
+the = fun_the()
