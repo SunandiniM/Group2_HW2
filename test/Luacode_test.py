@@ -4,6 +4,7 @@ from ..code import LuaCode
 from ..code import Sym
 from ..code import utilities
 from ..code import Data
+from ..data import *
 
 eg = {}
 fails = 0
@@ -98,17 +99,17 @@ def test_csv_eg():
             return
         else:
             utilities.oo(row)
-    print(utilities.csv("../data/auto93.csv",func))
+    print(utilities.csv("./data/auto93.csv",func))
     assert True
 
 def test_data_eg():
-    d = Data.Data("../data/auto93.csv")
+    d = Data.Data("./data/auto93.csv")
     for col in d.cols.y:
         utilities.oo(col)
     assert True
 
 def test_stats_eg():
-    data = Data.Data("../data/auto93.csv")
+    data = Data.Data("./data/auto93.csv")
     def div(col):
         return col.div()
     def mid(col):
