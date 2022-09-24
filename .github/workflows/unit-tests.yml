@@ -38,4 +38,6 @@ jobs:
     - name: Unit tests
       run: |
         pytest
-
+        coverage run -m pytest
+        coverage report
+        coverage html
