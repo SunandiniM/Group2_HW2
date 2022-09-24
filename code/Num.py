@@ -1,3 +1,5 @@
+import sys
+sys.path.append('../code')
 from .LuaCode import *
 from .utilities import *
 import math
@@ -12,31 +14,30 @@ class Num:
         self.lo=math.inf
         self.hi=-math.inf
         self.isSorted=True
-        if not s.find("-$"):
-            self.w=1
-        else:
+        if(len(s)>0 and s[-1]=="-"):
             self.w=-1
+        else:
+            self.w=1
 
     def nums(self):
-        print("printing self._has",self._has)
         if not self.isSorted:
-            self._has = sorted(self._has)
-            print("printing self._has",self._has)
+            self._has.sort()
             self.isSorted=True
         return self._has
     
-    def add(self,v,pos=None):
-        if v!= "?":
+    def add(self,v):
+        if v!= "?":  #check
             self.n= self.n+1
             self.lo=min(v,self.lo)
             self.hi=max(v,self.hi)
-            if len(self._has) < the["nums"]:
-                pos=1+len(self._has)
+            pos = None
+            if len(self._has) - 1 < the["nums"]:
+                pos=len(self._has)
             elif random.random() < the["nums"]/self.n:
-                pos=random.randint(1,len(self._has))
+                pos=random.random(len(self._has-1))
             if pos:
                 self.isSorted = False
-                self._has[pos] = float(v)
+                self._has[pos] = int(v)
 
     def div(self):
         a=self.nums()

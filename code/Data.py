@@ -18,24 +18,24 @@ class Data:
         for row in src:
           self.add(row)
    
-    def add(self,xs: Row):
+    def add(self,xs):
       if not self.cols:
         self.cols = Cols(xs)
       else:
-        row = xs if type(xs)==Row else Row(xs)
-        self.rows.append(row)
+        row1 = push(self.rows,(xs if xs["cells"] else Row(xs)))
         for todo in [self.cols.x, self.cols.y]:
           for col in todo:
-            col.add(row["cells"][col.c])
+            col.add(row1["cells"][col.at])
 
-    def stats(self,places=2,showCols=None,fun=None):
+    def stats(self,places,showCols,fun="mid"):
       showCols = showCols or self.cols.y
-      # fun = fun or self.cols.mid
+      fun = fun or "mid"
       t={}
       for i in showCols:
-        if not fun:
-          fun = i.mid
-        v = fun(i)
+        if(fun=="mid"):
+          v=i.mid()
+        elif(fun=="div"):
+          v=i.div()
         v = (type(v)==int and rnd(v,places)) or v
         t[i.name]=v
       return t
