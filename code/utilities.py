@@ -4,19 +4,17 @@ from .LuaCode import *
 import re
 import math
 
-b4=[]
-
 def csv(fname, fun=None):
     if(fname==None or len(fname.strip())==0):
         raise Exception("File not found")
     else:
         sep = "([^"+the["seperator"]+"]+)"
-        with open(fname, 'r', encoding='utf-8') as s:
+        with open(fname, 'r') as s:
             t = []
             for s1 in s.readlines():
                 t.append(coerce(s1))
-            if fun:
-                fun(t)
+                if fun:
+                    fun(t)
 
 def o(t):
     if type(t) is not dict:
@@ -50,10 +48,12 @@ def push(t,x):
     t.append(x)
     return x
 
-def per(t,p):
+def per(t,p = 0.5):
     if t:
-        p=math.floor(((p or 0.5)*len(t))+0.5)
-        return t[max(0,min(len(t),p))]
+        p=math.floor((p*len(t))+0.5)
+        return t[max(0,min(len(t),p)-1)]
+    else:
+        return 0
 
 # def rogues():
 #     print(environ.items)
