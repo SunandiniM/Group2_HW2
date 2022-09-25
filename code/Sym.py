@@ -2,13 +2,15 @@ import math
 from .LuaCode import *
 
 class Sym:
+    #Sym summarizes a stream of symbols
     def __init__(self,c=0,s=""):
-        self.n=0
-        self.c=c
-        self.name=s
-        self._has={}
+        self.n=0 # item seen
+        self.c=c # column position
+        self.name=s # column name
+        self._has={} # kept data
 
     def add(self,v):
+        # Add one thing to "col". For Num, keep at most "nums" items
         if v!= "?":
             self.n= self.n+1
             self._has[v] = 1+ self._has.get(v, 0)

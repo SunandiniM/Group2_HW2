@@ -5,11 +5,12 @@ from .Num import Num
 from .utilities import *
 
 class Data:
-  
+    #maintains rows and cols 
     def __init__(self, src):
-      self.cols = None
-      self.rows = []
-      self.src = src
+      #initializing data object
+      self.cols = None #column set to None
+      self.rows = [] #Rows set a empty list
+      self.src = src #Source set as parameter passed
       if type(src) == str:
         def func(row):
           self.add(row)
@@ -19,6 +20,7 @@ class Data:
           self.add(row)
    
     def add(self,xs: Row):
+      #add row to the data
       if not self.cols:
         self.cols = Cols(xs)
       else:
@@ -29,6 +31,7 @@ class Data:
             col.add(row["cells"][col.c])
 
     def stats(self,places=2,showCols=None,fun=None):
+      #return stats of the data
       showCols = showCols or self.cols.y
       # fun = fun or self.cols.mid
       t={}
