@@ -1,6 +1,8 @@
 import re
 import sys
 
+
+#command line arguments
 help="""
 CSV : summarized csv file
 (c) 2022 Tim Menzies <timm@ieee.org> BSD-2 license
@@ -16,19 +18,22 @@ OPTIONS:
  """
 
 def coerce(s):
+    #convert input in the form of a string to appropriate data type int/bool/str
     def fun(s1):
+        #returns boolean for the string
         if s=="true":
             return True
         elif s=="false":
             return False
         return s1
-
+    #return integer of the number in the form of string or calls fun to return appropriately
     if re.match(r"^[0-9]+$",s):
         return int(s)
     else:
         return None or fun(s)
 
 def cli(t):
+    #Command Line Interface arguments processed
     for slot,v in t.items():
         v = str(v)
         arg = sys.argv
@@ -41,6 +46,7 @@ def cli(t):
     return t
 
 def fun_the():
+    #create "the" variable and parse through "help" to get the values needed
     the = {}
     extract = re.findall(r"[-][-]([\S]+)[^\n]+= ([\S]+)", help)
     for k, v in extract:
