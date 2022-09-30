@@ -5,7 +5,7 @@
 [![Language](https://img.shields.io/badge/Language-Python-blue.svg?style=flat)](https://github.com/SunandiniM/Group2_HW2/search?l=python)
 [![License](https://img.shields.io/badge/License-MIT-purple.svg?style=flat)](https://github.com/SunandiniM/Group2_HW2/blob/main/LICENSE)
 [![Unit Tests](https://github.com/SunandiniM/Group2_HW2/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/SunandiniM/Group2_HW2/actions/workflows/unit-tests.yml)
-[![Code Coverage](https://codecov.io/gh/SunandiniM/Group2_HW2/branch/main/graphs/badge.svg)](https://codecov.io/gh/SunandiniM/Group2_HW2/branch/main/graphs/badge.svg)
+[![Code Coverage](https://codecov.io/gh/SunandiniM/Group2_HW2/branch/main/graphs/badge.svg)](https://codecov.io/gh/SunandiniM/Group2_HW2/branch/main)
 #
 
  ## Summary
