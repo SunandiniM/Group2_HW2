@@ -1,4 +1,4 @@
-# [Group 41](https://github.com/vishnuchalla/CSC-510-HW2-Fall22-G41)
+# [Group 19](https://github.com/aadiltajani/CSC510-HW-GRP19)
 # Rubric:
 
 | Area                                                                                                             | Assessment | Reasoning                                                                                    |
